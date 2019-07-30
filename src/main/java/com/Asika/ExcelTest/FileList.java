@@ -8,15 +8,21 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.poi.hssf.record.chart.TickRecord;
+import org.openxmlformats.schemas.drawingml.x2006.main.ThemeDocument;
+
 import com.Asika.ExcelTest.Util.GetRange;
 
 public class FileList {
 	private ArrayList<TestFile> list;
-
 	public FileList(String pattern, String path, String date) {
 		Map<Integer, File> map = new HashMap<Integer, File>();
 		ArrayList<TestFile> List = new ArrayList<TestFile>();
@@ -56,29 +62,31 @@ public class FileList {
 					}
 				}
 			}
-			
-			Vector<Integer> num = new Vector<Integer>(List.size() + 1);
-			num.add(0, 0);
-			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 9).get(0), num);
-			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 9).get(1), num);
-			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 9).get(2), num);
-			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 9).get(3), num);
-			readThread readThread5 = new readThread(map, GetRange.getRange(List.size(), 9).get(4), num);
-			readThread readThread6 = new readThread(map, GetRange.getRange(List.size(), 9).get(5), num);
-			readThread readThread7 = new readThread(map, GetRange.getRange(List.size(), 9).get(6), num);
-			readThread readThread8 = new readThread(map, GetRange.getRange(List.size(), 9).get(7), num);
-			readThread readThread9 = new readThread(map, GetRange.getRange(List.size(), 9).get(8), num);
-			readThread1.run();
-			readThread2.run();
-			readThread3.run();
-			readThread4.run();
-			readThread5.run();
-			readThread6.run();
-			readThread7.run();
-			readThread8.run();
-			readThread9.run();
-			int j=1;
-			for(TestFile i:List) {
+			CyclicBarrier barrier = new CyclicBarrier(5);
+			AtomicIntegerArray  num=new AtomicIntegerArray(List.size()+1);
+			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 5).get(0), num,barrier);
+			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 5).get(1), num,barrier);
+			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 5).get(2), num,barrier);
+			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 5).get(3), num,barrier);
+			readThread readThread5 = new readThread(map, GetRange.getRange(List.size(), 5).get(4), num,barrier);
+			Thread t1=new Thread(readThread1);
+		    Thread t2=new Thread(readThread2);
+		    Thread t3=new Thread(readThread3);
+		    Thread t4=new Thread(readThread4);
+		    Thread t5=new Thread(readThread5);
+		    t1.start();
+		    t2.start();
+		    t3.start();
+		    t4.start();
+		    t5.start();
+		    int j=1;
+		    try {
+				t5.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    for (TestFile i:List) {
 				i.setNum(num.get(j));
 				j++;
 			}
