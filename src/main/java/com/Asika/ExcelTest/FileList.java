@@ -62,26 +62,22 @@ public class FileList {
 					}
 				}
 			}
-			CyclicBarrier barrier = new CyclicBarrier(5);
 			AtomicIntegerArray  num=new AtomicIntegerArray(List.size()+1);
-			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 5).get(0), num,barrier);
-			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 5).get(1), num,barrier);
-			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 5).get(2), num,barrier);
-			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 5).get(3), num,barrier);
-			readThread readThread5 = new readThread(map, GetRange.getRange(List.size(), 5).get(4), num,barrier);
+			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 4).get(0), num);
+			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 4).get(1), num);
+			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 4).get(2), num);
+			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 4).get(3), num);
 			Thread t1=new Thread(readThread1);
 		    Thread t2=new Thread(readThread2);
 		    Thread t3=new Thread(readThread3);
 		    Thread t4=new Thread(readThread4);
-		    Thread t5=new Thread(readThread5);
 		    t1.start();
 		    t2.start();
 		    t3.start();
 		    t4.start();
-		    t5.start();
 		    int j=1;
 		    try {
-				t5.join();
+				t4.join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
