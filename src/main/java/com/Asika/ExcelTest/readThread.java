@@ -15,7 +15,11 @@ import com.Asika.ExcelTest.Util.Count;
 public class readThread  implements Runnable{
 	      private HashMap<Integer,File> map;
           private Range range;
+<<<<<<< HEAD
           private AtomicIntegerArray num;
+=======
+          AtomicIntegerArray num;
+>>>>>>> df4f6f3bcaac3fa173d9c1ec3d0ec078ed9cc207
           @Override
 		public   void  run() {
 			for(int i=this.range.getStart();i<=this.range.getEnd();i++) {
