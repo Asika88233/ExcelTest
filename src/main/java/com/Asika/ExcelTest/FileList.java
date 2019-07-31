@@ -42,7 +42,7 @@ public class FileList {
 				Matcher m = r.matcher(i.getName());
 				@SuppressWarnings("deprecation")
 				Matcher d = date1.matcher(cal.getTime().toLocaleString());
-				if (m.matches() && d.matches()) {
+				if (m.matches() && d.matches()&&!i.getName().equals("~$戏测评】-Asika-《创世纪元》——冒险异世，激情国战.docx")) {
 					if (i.isDirectory()) {
 						System.out.println(i.getName() + " [文件夹]");
 					} else {
@@ -62,34 +62,30 @@ public class FileList {
 					}
 				}
 			}
-			CyclicBarrier barrier = new CyclicBarrier(5);
 			AtomicIntegerArray  num=new AtomicIntegerArray(List.size()+1);
-			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 5).get(0), num,barrier);
-			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 5).get(1), num,barrier);
-			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 5).get(2), num,barrier);
-			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 5).get(3), num,barrier);
-			readThread readThread5 = new readThread(map, GetRange.getRange(List.size(), 5).get(4), num,barrier);
+			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 4).get(0), num);
+			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 4).get(1), num);
+			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 4).get(2), num);
+			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 4).get(3), num);
 			Thread t1=new Thread(readThread1);
 		    Thread t2=new Thread(readThread2);
 		    Thread t3=new Thread(readThread3);
 		    Thread t4=new Thread(readThread4);
-		    Thread t5=new Thread(readThread5);
 		    t1.start();
 		    t2.start();
 		    t3.start();
 		    t4.start();
-		    t5.start();
 		    int j=1;
 		    try {
-				t5.join();
+				t4.join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    for (TestFile i:List) {
-				i.setNum(num.get(j));
-				j++;
-			}
+		    	 for (TestFile i:List) {
+						i.setNum(num.get(j));
+						j++;
+					}
 			Collections.sort(List, new Comparator<TestFile>() {
 				@Override
 				public int compare(TestFile o1, TestFile o2) {

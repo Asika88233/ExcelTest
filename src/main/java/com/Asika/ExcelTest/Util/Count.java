@@ -22,7 +22,7 @@ public class Count {
 	            @SuppressWarnings("resource")
 				XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
 	            String doc1 = extractor.getText().trim();
-	            Pattern pattern = Pattern.compile("[\\d][.][\\w][A-z]|[\\u4e00-\\u9fa5]|\\w+|[，【】。《》：!！？]");
+	            Pattern pattern = Pattern.compile("[\\d][.][\\w][A-z]|[\\u4e00-\\u9fa5]|\\w+|[，【】。《》：!！？“”]");
 	            Matcher matcher = pattern.matcher(doc1);
 	            while (matcher.find()) {
 	                count++;
