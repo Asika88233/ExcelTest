@@ -77,7 +77,10 @@ public class FileList {
 		    t4.start();
 		    int j=1;
 		    try {
-				t4.join();
+		    	t1.join(0);
+		    	t2.join(0);
+		    	t3.join(0);
+				t4.join(0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
