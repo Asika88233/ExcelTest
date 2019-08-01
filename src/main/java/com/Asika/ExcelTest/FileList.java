@@ -63,28 +63,11 @@ public class FileList {
 				}
 			}
 			AtomicIntegerArray  num=new AtomicIntegerArray(List.size()+1);
-			readThread readThread1 = new readThread(map, GetRange.getRange(List.size(), 4).get(0), num);
-			readThread readThread2 = new readThread(map, GetRange.getRange(List.size(), 4).get(1), num);
-			readThread readThread3 = new readThread(map, GetRange.getRange(List.size(), 4).get(2), num);
-			readThread readThread4 = new readThread(map, GetRange.getRange(List.size(), 4).get(3), num);
-			Thread t1=new Thread(readThread1);
-		    Thread t2=new Thread(readThread2);
-		    Thread t3=new Thread(readThread3);
-		    Thread t4=new Thread(readThread4);
-		    t1.start();
-		    t2.start();
-		    t3.start();
-		    t4.start();
-		    int j=1;
-		    try {
-		    	t1.join(0);
-		    	t2.join(0);
-		    	t3.join(0);
-				t4.join(0);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Integer threadNums=4;
+			ThreadPoll poll=new ThreadPoll(map,threadNums);
+			Thread[] threads=poll.initThreads(num, List.size());
+			poll.readFileNums(threads);
+			int j=1;
 		    	 for (TestFile i:List) {
 						i.setNum(num.get(j));
 						j++;
