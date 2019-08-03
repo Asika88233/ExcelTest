@@ -30,7 +30,6 @@ public class ExcelWriter {
 		} // 插入第一行数据的表头
 		int j = 1;
 		for (TestFile i : list) {
-			j++;
 			XSSFRow nrow = sheet.createRow(j);
 			XSSFCell ncell = nrow.createCell(0);
 			ncell.setCellValue("" + i.getTitle());
@@ -40,6 +39,7 @@ public class ExcelWriter {
 			ncell.setCellValue(i.getSalary());
 			ncell = nrow.createCell(3);
 			ncell.setCellValue(i.getTime());
+			j++;
 		}
 		j = j - 1;
 		System.out.println("一共生成了" + j + "条信息");
