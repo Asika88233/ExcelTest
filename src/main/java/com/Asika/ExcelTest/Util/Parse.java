@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import com.Asika.ExcelTest.TestFile;
+import com.Asika.ExcelTest.bean.TestFile;
 
 public class Parse {
 	/**

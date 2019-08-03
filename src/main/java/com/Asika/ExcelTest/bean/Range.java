@@ -1,4 +1,4 @@
-package com.Asika.ExcelTest;
+package com.Asika.ExcelTest.bean;
 
 public class Range {
        private int start;

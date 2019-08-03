@@ -1,4 +1,4 @@
-package com.Asika.ExcelTest;
+package com.Asika.ExcelTest.bean;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,16 +62,10 @@ public class FileList {
 					}
 				}
 			}
-			AtomicIntegerArray  num=new AtomicIntegerArray(List.size()+1);
 			Integer threadNums=4;
 			ThreadPoll poll=new ThreadPoll(map,threadNums);
-			Thread[] threads=poll.initThreads(num, List.size());
+			Thread[] threads=poll.initThreads(List, List.size());
 			poll.readFileNums(threads);
-			int j=1;
-		    	 for (TestFile i:List) {
-						i.setNum(num.get(j));
-						j++;
-					}
 			Collections.sort(List, new Comparator<TestFile>() {
 				@Override
 				public int compare(TestFile o1, TestFile o2) {

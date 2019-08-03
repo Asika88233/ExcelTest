@@ -1,7 +1,8 @@
 package com.Asika.ExcelTest;
 
+import com.Asika.ExcelTest.bean.FileList;
 
-public class FileTest {
+public class Application {
      public static void main(String[] args) {
     	 Long startTime=System.currentTimeMillis();
 		  String date = ""; FileList fileList =new

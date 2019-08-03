@@ -1,9 +1,8 @@
-package com.Asika.ExcelTest;
+package com.Asika.ExcelTest.bean;
 
 import java.io.File;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicIntegerArray;
 
 import com.Asika.ExcelTest.Util.GetRange;
 
@@ -15,10 +14,10 @@ public class ThreadPoll {
 		    this.map=map;
 		    this.threadNums=threadNums;
 	}
-	  public  Thread[] initThreads(AtomicIntegerArray  num,Integer size) {
+	  public  Thread[] initThreads(ArrayList<TestFile> list,Integer size) {
 		  Thread a[]=new Thread[this.threadNums];
 		  for (int i = 0; i <this.threadNums; i++) {
-			  readThread readThread = new readThread(map, GetRange.getRange(size, this.threadNums).get(i), num);
+			  ReadThread readThread = new ReadThread(map, GetRange.getRange(size, this.threadNums).get(i),list);
 			  Thread t=new Thread(readThread);
 			  a[i]=t;
 		}

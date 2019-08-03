@@ -1,4 +1,4 @@
-package com.Asika.ExcelTest;
+package com.Asika.ExcelTest.bean;
 
 public class TestFile {
                         private String title;

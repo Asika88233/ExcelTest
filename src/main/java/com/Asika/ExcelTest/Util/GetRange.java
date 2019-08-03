@@ -3,7 +3,7 @@ package com.Asika.ExcelTest.Util;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.Asika.ExcelTest.Range;
+import com.Asika.ExcelTest.bean.Range;
 
 public class GetRange {
 	public static  Map<Integer, Range> getRange(int num,int threads) {

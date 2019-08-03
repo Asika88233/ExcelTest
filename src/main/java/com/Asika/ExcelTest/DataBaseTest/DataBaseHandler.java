@@ -1,4 +1,4 @@
-package com.Asika.DataBaseTest;
+package com.Asika.ExcelTest.DataBaseTest;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,8 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.Asika.ExcelTest.TestFile;
+
 import com.Asika.ExcelTest.Util.Parse;
+import com.Asika.ExcelTest.bean.TestFile;
 public class DataBaseHandler {
                private static final String DRIVE_CLASS="com.mysql.cj.jdbc.Driver";
                private static final String URL = "jdbc:mysql://localhost:3306/test?useSSL=false&characterEncoding=utf-8&serverTimezone=GMT&allowPublicKeyRetrieval=true";

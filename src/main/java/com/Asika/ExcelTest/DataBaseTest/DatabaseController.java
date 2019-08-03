@@ -1,11 +1,11 @@
-package com.Asika.DataBaseTest;
+package com.Asika.ExcelTest.DataBaseTest;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import com.Asika.ExcelTest.TestFile;
 import com.Asika.ExcelTest.Util.Parse;
+import com.Asika.ExcelTest.bean.TestFile;
 
 public class DatabaseController {
 	 private  DataBaseHandler handler;

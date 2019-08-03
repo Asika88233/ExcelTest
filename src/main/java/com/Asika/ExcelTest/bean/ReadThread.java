@@ -1,4 +1,4 @@
-package com.Asika.ExcelTest;
+package com.Asika.ExcelTest.bean;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,25 +12,25 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 
 import com.Asika.ExcelTest.Util.Count;
 
-public class readThread  implements Runnable{
+public class ReadThread  implements Runnable{
 	      private HashMap<Integer,File> map;
           private Range range;
-          private AtomicIntegerArray num;
+          private ArrayList<TestFile> list;
           @Override
 		public   void  run() {
 			for(int i=this.range.getStart();i<=this.range.getEnd();i++) {
 				File file=map.get(i);
 				try {
-					num.set(i, Count.findWordNum(file));
+					list.get(i-1).setNum(Count.findWordNum(file));;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-          public readThread(Map<Integer,File> map,Range range, AtomicIntegerArray num) {
+          public ReadThread(Map<Integer,File> map,Range range, ArrayList<TestFile> list) {
         	  this.map=(HashMap<Integer, File>) map;
-        	  this.num=num;
+        	  this.list=list;
         	  this.range=range;
           }
 }
