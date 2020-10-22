@@ -9,7 +9,7 @@ public class Application {
 	public static void main(String[] args) {
 		Long startTime = System.currentTimeMillis();
 		String date = "2019年8月26日";
-		FileList fileList = new FileList("测评", "D:\\万万", ".*" + date + ".*");
+		FileList fileList = new FileList("测评", "D:\\软文", ".*" + date + ".*");
 		fileList.showList();
 		ExcelWriter excelWriter = new ExcelWriter();
 		try {
