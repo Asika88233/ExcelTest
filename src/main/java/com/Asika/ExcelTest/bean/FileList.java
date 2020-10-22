@@ -32,7 +32,7 @@ public class FileList {
 				Matcher m = r.matcher(i.getName());
 				@SuppressWarnings("deprecation")
 				Matcher d = date1.matcher(cal.getTime().toLocaleString());
-				if (m.matches() && d.matches()&&!i.getName().equals("~$戏测评】-Asika-《创世纪元》——冒险异世，激情国战.docx")) {
+				if (m.matches() && d.matches()) {
 					if (i.isDirectory()) {
 						System.out.println(i.getName() + " [文件夹]");
 					} else {
