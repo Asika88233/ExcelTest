@@ -40,3 +40,7 @@ target/classes/com/Asika/ExcelTest/Util/Count.class
 target/test-classes/.gitignore
 target/test-classes/com/Asika/ExcelTest/Util/CountTest.class
 target/test-classes/.gitignore
+target
+bin\com\Asika
+.gitignore
+.gitignore
